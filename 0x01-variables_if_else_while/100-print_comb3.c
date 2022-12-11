@@ -20,15 +20,13 @@ int main(void)
 			{
 				putchar(tens);
 				putchar(ones);
-			if (!(ones == '9' && tens == '8'))/*addes comma and space*/
-				{
-					putchar(',');
-					putchar(' ');
-				}
+			if (!(ones == '9' && tens == '8'))/* addes comma and space */
+			{
+				putchar(',');
+				putchar(' ');
 			}
 		}
 	}
-	
 
 	putchar('\n');
 
