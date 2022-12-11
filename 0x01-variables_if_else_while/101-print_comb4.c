@@ -1,37 +1,47 @@
 #include <stdio.h>
 
 /**
- * main - prints all possible combination of three digit
- * Return: always 0 (success)
-*/
+ * main - print triple combos
+ *
+ * Description: print triple digit combos
+ *
+ * Return: Always 0 (Success)
+ */
 
 int main(void)
-
 {
-	int ones = '0';
-	int tens = '0';
-	int hundreds = '0';
+	int i, j, k;
 
-	for (hundreds = '0'; hundreds <= '9'; hundreds++)
+	i = 48;
+	j = 48;
+	k = 48;
+
+	while (i < 58)
 	{
-		for (tens = '0'; tens <= '9'; tens++)
+		j = i + 1;
+		while (j < 58)
 		{
-			for (ones = '0'; ones <= '9'; ones++)
-			{
-				if (!((ones = tens) | (tens = hundreds) | (tens > ones) | (hundreds > tens)))
+			k = j + 1;
+				while (k < 58)
 				{
-					putchar(hundreds);
-					putchar(tens);
-					putchar(ones);
-					if (!(ones == '9' && hundreds == '7' && tens == '8'))
+					putchar(i);
+					putchar(j);
+					putchar(k);
+					if (i < 55 || j < 56 || k < 57)
 					{
-						putchar(',');
-						putchar(' ');
+						putchar(44);
+						putchar(32);
 					}
+					k++;
+				}
 
+			j++;
+		}
 
-}
-	putchar('\n');
+		i++;
+	}
+
+	putchar(10);
 
 	return (0);
 }
