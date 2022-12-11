@@ -12,19 +12,23 @@ int main(void)
 	int tens = '0';
 
 	for (tens = '0'; tens <= '9'; tens++)/* prints tens digits*/
-	for (ones = '0'; ones <= '9'; ones++)/* prints ones digit*/
 
-	if (!((ones == tens) || (tens > ones)))/* eliminates repetition*/
 	{
-		putchar(tens);
-		putchar(ones);
+		for (ones = '0'; ones <= '9'; ones++)/* prints ones digit*/
+		{
+			if (!((ones == tens) || (tens > ones)))/* eliminates repetition*/
+			{
+				putchar(tens);
+				putchar(one);
+			if (!(ones == '9' && tens == '8'))/*addes comma and space*/
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+		}
 	}
-
-	if (!(ones == '9' && tens == '8'))/*addes comma and space*/
-	{
-		putchar(',');
-		putchar(' ');
-	}
+	
 
 	putchar('\n');
 
