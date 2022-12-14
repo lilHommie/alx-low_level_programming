@@ -22,18 +22,19 @@ void jack_bauer(void)
 			_putchar((hour / 10) + 0);
 			_putchar((hour % 10) + 0);
 		}
-		if (minutes < 10)
+		if (minute < 10)
 		{
 			_putchar(':');
 			_putchar('0');
-			_putchar(minutes + '0');
+			_putchar(minute + '0');
 		}
-		else if (minutes > 10)
+		else if (minute > 10)
 		{
 			_putchar(':');
 			_putchar((minute / 10) + 0);
 			_putchar((minute % 10) + 0);
-			_putchar('\n');
 		}
+		}
+	_putchar('\n');
 	}
 }
