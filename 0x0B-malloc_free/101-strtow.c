@@ -1,50 +1,67 @@
+#include "main.h"
 #include <stdlib.h>
+
 /**
-  * strtow - splits a string into words.
-  * @str: pointer to string to be splitted
-  * Return:  a pointer to the string, or NULL if it fails.
-  */
+ * ch_free_grid - frees a 2 dimensional array.
+ * @grid: multidimensional array of char.
+ * @height: height of the array.
+ *
+ * Return: no return
+ */
+void ch_free_grid(char **grid, unsigned int height)
+{
+	if (grid != NULL && height != 0)
+	{
+		for (; height > 0; height--)
+			free(grid[height]);
+		free(grid[height]);
+		free(grid);
+	}
+}
+
+/**
+ * strtow - splits a string into words.
+ * @str: string.
+ *
+ * Return: pointer of an array of integers
+ */
 char **strtow(char *str)
 {
-	int wc = 0, i = 0, j = 0, k, wlen;
-	char **newStr, *temp;
+	char **aout;
+	unsigned int c, height, i, j, a1;
 
-	if (str == NULL || !*str)
+	if (str == NULL || *str == '\0')
 		return (NULL);
-	while (*(str + i))
+	for (c = height = 0; str[c] != '\0'; c++)
+		if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
+			height++;
+	aout = malloc((height + 1) * sizeof(char *));
+	if (aout == NULL || height == 0)
 	{
-		if (*(str + i + 1) == ' ' || *(str + i + 1) == '\0')
-			++i;
-		wc++;
+		free(aout);
+		return (NULL);
 	}
-	if (wc == 0)
-		return (NULL);
-	newStr = malloc(++wc  * sizeof(char *));
-	if (newStr == NULL)
-		return (NULL);
-	while (*str)
+	for (i = a1 = 0; i < height; i++)
 	{
-		while (*str == ' ' && *str)
-			++str;
-		wlen = 0;
-		while (*(str + wlen) != ' ' && *(str + wlen))
-			++wlen;
-		temp = malloc((wlen + 1) * sizeof(char));
-		if (temp == NULL)
+		for (c = a1; str[c] != '\0'; c++)
 		{
-			for (; j - 1 >= 0; j--)
-				free(newStr[j]);
-			free(newStr);
-			return (NULL);
+			if (str[c] == ' ')
+				a1++;
+			if (str[c] != ' ' && (str[c + 1] == ' ' || str[c + 1] == '\0'))
+			{
+				aout[i] = malloc((c - a1 + 2) * sizeof(char));
+				if (aout[i] == NULL)
+				{
+					ch_free_grid(aout, i);
+					return (NULL);
+				}
+				break;
+			}
 		}
-		for (k = 0; k < wlen; ++k)
-			*(temp + k) = *str++;
-		*(temp + k) = '\0';
-		*(newStr + j) = temp;
-
-		if (j < wc - 1)
-			j++;
+		for (j = 0; a1 <= c; a1++, j++)
+			aout[i][j] = str[a1];
+		aout[i][j] = '\0';
 	}
-	*(newStr + j) = NULL;
-	return (newStr);
+	aout[i] = NULL;
+	return (aout);
 }
