@@ -1,12 +1,7 @@
-lines (34 sloc)  1.07 KB
+#ifndef LISTS_H
+#define LISTS_H
 
-#ifndef LISTINT_H
-#define LISTINT_H
-
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-
+#include <stddef.h>
 /**
  * struct listint_s - singly linked list
  * @n: integer
@@ -17,8 +12,8 @@ lines (34 sloc)  1.07 KB
  */
 typedef struct listint_s
 {
-    int n;
-    struct listint_s *next;
+	int n;
+	struct listint_s *next;
 } listint_t;
 
 size_t print_listint(const listint_t *h);
@@ -36,6 +31,6 @@ listint_t *reverse_listint(listint_t **head);
 size_t print_listint_safe(const listint_t *head);
 size_t free_listint_safe(listint_t **h);
 listint_t *find_listint_loop(listint_t *head);
+int _putchar(char c);
 
-
-#endif /*LISTINT_H*/
+#endif /*LISTS_H*/
